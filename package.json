@@ -1,0 +1,17 @@
+{
+  "name": "log-level-filter-tools",
+  "version": "0.1.0",
+  "description": "Zero-dependency hierarchical log filter with per-namespace runtime thresholds",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {}
+}
