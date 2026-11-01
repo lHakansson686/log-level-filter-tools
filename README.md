@@ -30,3 +30,10 @@ Levels are five fixed integer constants (`TRACE`, `DEBUG`, `INFO`, `WARN`, `ERRO
 `clearThreshold('')` — clearing the root threshold — resets the default level to `INFO`. This is the one spot where the library makes an opinionated reset choice rather than preserving previous state, because there is no reliable "previous default" to restore once the root has been overwritten. Call `setDefault()` afterwards if you need a different baseline.
 
 Namespace queries passed to `shouldLog` are **not** normalised: `shouldLog('app..db', ...)` is treated as the literal namespace `app..db`, not `app.db`. Only `setThreshold` normalises (collapsing repeated dots and stripping leading dots). This keeps the hot path simple and predictable.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
